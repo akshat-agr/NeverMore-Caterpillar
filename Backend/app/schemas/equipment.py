@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
 from datetime import date
 
 class EquipmentBase(BaseModel):
@@ -13,5 +14,4 @@ class EquipmentCreate(EquipmentBase):
 class EquipmentResponse(EquipmentBase):
     eq_id: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

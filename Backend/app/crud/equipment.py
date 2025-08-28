@@ -3,7 +3,7 @@ from app.models import equipment
 from app.schemas import equipment as equipment_schema
 
 def create_equipment(db: Session, equipment_in: equipment_schema.EquipmentCreate):
-    db_item = equipment.Equipment(**equipment_in.dict())
+    db_item = equipment.Equipment(**equipment_in.model_dump())
     db.add(db_item)
     db.commit()
     db.refresh(db_item)

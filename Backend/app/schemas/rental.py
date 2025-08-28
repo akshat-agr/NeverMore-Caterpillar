@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
 from datetime import datetime
 
 class RentalBase(BaseModel):
@@ -18,5 +19,4 @@ class RentalCreate(RentalBase):
 class RentalResponse(RentalBase):
     rental_id: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)

@@ -3,7 +3,7 @@ from app.models import rental
 from app.schemas import rental as rental_schema
 
 def create_rental(db: Session, rental_in: rental_schema.RentalCreate):
-    db_rental = rental.Rental(**rental_in.dict())
+    db_rental = rental.Rental(**rental_in.model_dump())
     db.add(db_rental)
     db.commit()
     db.refresh(db_rental)

@@ -1,4 +1,5 @@
 from pydantic import BaseModel
+from pydantic import ConfigDict
 
 class SiteBase(BaseModel):
     site_type: str
@@ -11,5 +12,4 @@ class SiteCreate(SiteBase):
 class SiteResponse(SiteBase):
     site_id: int
 
-    class Config:
-        orm_mode = True
+    model_config = ConfigDict(from_attributes=True)
