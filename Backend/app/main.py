@@ -11,6 +11,11 @@ Base.metadata.create_all(bind=engine)
 
 app = FastAPI(title="Smart Rental System")
 
+# ✅ Default root route
+# @app.get("/")
+# def root():
+#     return {"message": "Welcome to the Smart Rental System API 🚜"}
+
 # Register routers
 app.include_router(equipment.router)
 app.include_router(site.router)

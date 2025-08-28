@@ -1,5 +1,6 @@
 from pydantic import BaseModel
 from pydantic import ConfigDict
+from typing import Optional
 
 class SiteBase(BaseModel):
     site_type: str
@@ -8,6 +9,11 @@ class SiteBase(BaseModel):
 
 class SiteCreate(SiteBase):
     pass
+
+class SiteUpdate(BaseModel):
+    site_type: Optional[str] = None
+    region: Optional[str] = None
+    site_size: Optional[int] = None
 
 class SiteResponse(SiteBase):
     site_id: int

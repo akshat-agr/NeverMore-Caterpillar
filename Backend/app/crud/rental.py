@@ -14,3 +14,22 @@ def get_rental(db: Session, rental_id: int):
 
 def get_all_rentals(db: Session):
     return db.query(rental.Rental).all()
+
+def update_rental(db: Session, rental_id: int, rental_in: rental_schema.RentalUpdate):
+    db_item = get_rental(db, rental_id)
+    if not db_item:
+        return None
+    data = rental_in.model_dump(exclude_unset=True)
+    for key, value in data.items():
+        setattr(db_item, key, value)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+def delete_rental(db: Session, rental_id: int) -> bool:
+    db_item = get_rental(db, rental_id)
+    if not db_item:
+        return False
+    db.delete(db_item)
+    db.commit()
+    return True

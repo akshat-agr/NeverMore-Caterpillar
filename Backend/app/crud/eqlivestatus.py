@@ -17,3 +17,22 @@ def get_status(db: Session, status_id: int):
 
 def get_all_statuses(db: Session):
     return db.query(eqlivestatus.EqLiveStatus).all()
+
+def update_status(db: Session, status_id: int, status_in: eqlivestatus_schema.EqLiveStatusUpdate):
+    db_item = get_status(db, status_id)
+    if not db_item:
+        return None
+    data = status_in.model_dump(exclude_unset=True)
+    for key, value in data.items():
+        setattr(db_item, key, value)
+    db.commit()
+    db.refresh(db_item)
+    return db_item
+
+def delete_status(db: Session, status_id: int) -> bool:
+    db_item = get_status(db, status_id)
+    if not db_item:
+        return False
+    db.delete(db_item)
+    db.commit()
+    return True
