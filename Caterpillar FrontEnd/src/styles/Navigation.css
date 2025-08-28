@@ -1,0 +1,89 @@
+.nav-logo-img {
+  height: 40px;
+  width: auto;
+  margin-right: 0.7rem;
+  border-radius: 8px;
+  background: #ffcd11;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+/* Navigation Sidebar Styles */
+
+.navbar {
+  width: 100%;
+  background: #111;
+  color: #ffcd11;
+  padding: 0.7rem 2rem;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+.nav-logo {
+  display: flex;
+  align-items: center;
+  font-size: 1.5rem;
+  font-weight: 700;
+  color: #ffcd11;
+}
+.nav-logo-text {
+  font-size: 1.3rem;
+  font-weight: 700;
+  letter-spacing: 1px;
+  margin-left: 0.2rem;
+}
+.nav-menu-horizontal {
+  display: flex;
+  flex-direction: row;
+  gap: 1.2rem;
+  align-items: center;
+}
+.nav-item {
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  cursor: pointer;
+  transition: background 0.2s, color 0.2s;
+  display: flex;
+  align-items: center;
+  font-size: 1.08rem;
+  gap: 0.7rem;
+  color: #ffcd11;
+  text-decoration: none;
+  font-weight: 600;
+}
+/* Navigation item styles - Caterpillar theme */
+.nav-item {
+  color: #fff;
+  text-decoration: none;
+  padding: 0.7rem 1.2rem;
+  border-radius: 6px;
+  font-weight: 500;
+  background: transparent;
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+  margin: 0 0.2rem;
+  letter-spacing: 0.5px;
+}
+.nav-item.active,
+.nav-item:active {
+  background: #ffcd11;
+  color: #222;
+  font-weight: 700;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12);
+}
+.nav-item:hover {
+  background: #ffe066;
+  color: #222;
+  font-weight: 700;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  cursor: pointer;
+}
+
+.nav-logo-img {
+  height: 60px;
+  width: auto;
+  margin-right: 0.5rem;
+  border-radius: 8px;
+}

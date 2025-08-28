@@ -1,0 +1,162 @@
+/* ConstructionMap.css */
+
+
+.minimized-map {
+  position: fixed;
+  bottom: 32px;
+  right: 32px;
+  width: 170px;
+  height: 60px;
+  background: linear-gradient(90deg, #ffcd11 0%, #ffe066 100%);
+  border-radius: 12px;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 1000;
+  font-weight: 700;
+  color: #222;
+  font-size: 1.15rem;
+  letter-spacing: 1px;
+  border: 2px solid #222;
+  transition: box-shadow 0.2s, background 0.2s;
+}
+.minimized-map:hover {
+  box-shadow: 0 8px 32px rgba(0,0,0,0.22);
+  background: linear-gradient(90deg, #ffe066 0%, #ffcd11 100%);
+  color: #111;
+}
+
+
+.modal-overlay {
+  position: fixed;
+  top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.45);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 2000;
+}
+
+
+.modal-content {
+  background: #181818;
+  border-radius: 22px;
+  padding: 40px 48px 32px 48px;
+  min-width: 520px;
+  min-height: 440px;
+  box-shadow: 0 16px 48px rgba(0,0,0,0.28);
+  border: 2px solid #ffcd11;
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.full-map {
+  flex: 1;
+  min-height: 360px;
+  min-width: 360px;
+  background: linear-gradient(120deg, #222 0%, #181818 100%);
+  border-radius: 18px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.18);
+  padding: 18px;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+
+.map-controls {
+  display: flex;
+  gap: 1.2rem;
+  margin-top: 1.2rem;
+  justify-content: flex-end;
+}
+.control-btn {
+  background: #ffcd11;
+  color: #222;
+  border: 2px solid #222;
+  border-radius: 50%;
+  width: 44px;
+  height: 44px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  font-weight: 700;
+  cursor: pointer;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  transition: background 0.2s, color 0.2s, box-shadow 0.2s;
+}
+.control-btn:hover {
+  background: #ffe066;
+  color: #111;
+  box-shadow: 0 4px 16px rgba(0,0,0,0.18);
+}
+
+.map-legend {
+  position: absolute;
+  bottom: 18px;
+  left: 18px;
+  background: #fff;
+  color: #222;
+  border-radius: 8px;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  padding: 0.8rem 1.2rem;
+  font-size: 1rem;
+  z-index: 20;
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 0.7rem;
+  margin-bottom: 0.5rem;
+}
+.legend-item:last-child {
+  margin-bottom: 0;
+}
+.status-dot {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  border: 2px solid #222;
+}
+.status-dot.active {
+  background: #22c55e;
+}
+.status-dot.idle {
+  background: #fbbf24;
+}
+.status-dot.error {
+  background: #ef4444;
+}
+
+
+.close-btn {
+  position: absolute;
+  top: 16px;
+  right: 16px;
+  background: #ef4444;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  padding: 6px 12px;
+  cursor: pointer;
+  font-size: 1rem;
+  z-index: 10;
+}
+.close-btn:hover {
+  background: #dc2626;
+}
+
+.full-map {
+  flex: 1;
+  min-height: 300px;
+  min-width: 300px;
+  /* You can add more styles for the expanded map here */
+}

@@ -1,0 +1,79 @@
+/* DigitalTwinView.css */
+
+.digital-twin {
+  background: #fff;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.08);
+  padding: 2rem;
+  max-width: 900px;
+  margin: 2rem auto;
+}
+
+.asset-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+}
+.asset-title {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #1e293b;
+}
+.asset-status {
+  background: #22c55e;
+  color: #fff;
+  padding: 0.5rem 1.2rem;
+  border-radius: 999px;
+  font-weight: 600;
+  font-size: 1.1rem;
+  box-shadow: 0 2px 8px rgba(34,197,94,0.12);
+}
+
+.gauges-container {
+  display: flex;
+  flex-direction: row;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  width: 100%;
+  justify-content: space-between;
+}
+
+.gauge-card {
+  background: #f3f4f6;
+  border-radius: 12px;
+  padding: 1.2rem;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.06);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.gauge-title {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 0.5rem;
+  color: #334155;
+}
+
+.gauge-value {
+  font-size: 2rem;
+  font-weight: 700;
+  color: #0ea5e9;
+}
+
+.gauge-unit {
+  font-size: 1rem;
+  color: #64748b;
+}
+
+/* Responsive */
+@media (max-width: 600px) {
+  .digital-twin {
+    padding: 1rem;
+    max-width: 100%;
+  }
+  .gauges-container {
+    grid-template-columns: 1fr;
+  }
+}

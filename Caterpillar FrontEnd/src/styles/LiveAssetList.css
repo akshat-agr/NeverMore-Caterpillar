@@ -1,0 +1,102 @@
+/* Live Asset List Table Styles */
+
+.asset-list {
+  width: 100%;
+  background: #111;
+  border-radius: 16px;
+  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
+  padding: 1.5rem 2rem;
+  margin-bottom: 2rem;
+}
+.asset-list h2 {
+  color: #ffcd11;
+  font-size: 1.4rem;
+  font-weight: 700;
+  margin-bottom: 1.2rem;
+}
+.asset-table {
+  width: 100%;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: #222;
+  border-radius: 12px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.18);
+  font-size: 1.08rem;
+  overflow: hidden;
+}
+.asset-table th, .asset-table td {
+  padding: 1rem 1.2rem;
+  text-align: left;
+}
+.asset-table th {
+  background: #ffcd11;
+  color: #111;
+  font-weight: 700;
+  border-bottom: 2px solid #222;
+}
+.asset-table td {
+  color: #fff;
+  border-bottom: 1px solid #333;
+}
+.asset-table tr {
+  transition: background 0.2s;
+}
+.asset-table tr:hover {
+  background: #333;
+}
+.status-indicator {
+  display: inline-block;
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+}
+.status-active {
+  background: #22c55e;
+}
+.status-idle {
+  background: #fbbf24;
+}
+.status-error {
+  background: #ef4444;
+}
+.alert-badge {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border-radius: 999px;
+  font-size: 0.95rem;
+  font-weight: 600;
+  margin-right: 0.3rem;
+}
+.alert-badge.overdue {
+  background: #ef4444;
+  color: #fff;
+}
+.alert-badge.anomaly {
+  background: #fbbf24;
+  color: #111;
+}
+.asset-table strong {
+  color: #ffcd11;
+}
+
+.loading-spinner {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  border: 3px solid #f3f3f3;
+  border-top: 3px solid #3498db;
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 10px;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+.kpi-card.loading .kpi-value {
+  color: #ccc;
+  font-style: italic;
+}
