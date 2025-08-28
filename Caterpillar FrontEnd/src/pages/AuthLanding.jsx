@@ -1,9 +1,19 @@
 import React from 'react';
-import { SignIn, SignUp } from '@clerk/clerk-react';
+import { SignIn, SignUp, useAuth } from '@clerk/clerk-react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/AuthLanding.css';
 
 const AuthLanding = () => {
   const [showSignUp, setShowSignUp] = React.useState(false);
+  const { isSignedIn } = useAuth();
+  const navigate = useNavigate();
+
+  // Redirect to dashboard if already signed in
+  React.useEffect(() => {
+    if (isSignedIn) {
+      navigate('/dashboard');
+    }
+  }, [isSignedIn, navigate]);
 
   return (
     <div className="auth-landing-container">
@@ -24,7 +34,11 @@ const AuthLanding = () => {
           </button>
         </div>
         <div className="auth-form">
-          {!showSignUp ? <SignIn  /> : <SignUp />}
+          {!showSignUp ? (
+            <SignIn redirectUrl="/dashboard" />
+          ) : (
+            <SignUp redirectUrl="/dashboard" />
+          )}
         </div>
       </div>
     </div>
