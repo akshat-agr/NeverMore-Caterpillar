@@ -8,11 +8,8 @@ const Navigation = () => {
   const location = useLocation();
   const menuItems = [
     { id: 'dashboard', label: 'Dashboard' },
-    { id: 'analytics', label: 'Analytics' },
     { id: 'assets', label: 'Asset Library' },
     { id: 'rentals', label: 'Rental Management' },
-    { id: 'maintenance', label: 'Maintenance' },
-    { id: 'reports', label: 'Reports' },
     { id: 'settings', label: 'Settings' },
   ];
 

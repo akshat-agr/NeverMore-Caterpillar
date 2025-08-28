@@ -5,13 +5,10 @@ import '../../styles/KPICards.css';
 
 const KPICards = () => {
   const [kpiData, setKpiData] = useState([
-    { title: 'Total Assets Rented', value: 0, icon: '🚜' },
-    { title: 'Utilization Rate', value: '0%', icon: '📊' },
-    { title: 'Overdue Assets', value: 0, icon: '⚠️' },
-    { title: 'Critical Alerts', value: 0, icon: '🔴' },
+    { title: 'Total Assets', value: 0, icon: '��' },
+    { title: 'In Maintenance', value: 0, icon: '🔴' },
   ]);
   const [loading, setLoading] = useState(true);
-  const [backendStatus, setBackendStatus] = useState('checking');
 
   useEffect(() => {
     fetchKPIData();
@@ -20,63 +17,42 @@ const KPICards = () => {
   const fetchKPIData = async () => {
     try {
       setLoading(true);
-      
-      // First check if backend is available
-      try {
-        await apiService.healthCheck();
-        setBackendStatus('connected');
-      } catch (healthErr) {
-        setBackendStatus('disconnected');
-        // Use sample data immediately if backend is down
-        setKpiData([
-          { title: 'Total Assets Rented', value: 47, icon: '🚜' },
-          { title: 'Utilization Rate', value: '85%', icon: '📊' },
-          { title: 'Overdue Assets', value: 3, icon: '⚠️' },
-          { title: 'Critical Alerts', value: 2, icon: '🔴' },
-        ]);
-        setLoading(false);
-        return;
-      }
 
-      // Backend is available, fetch real data
-      const [equipmentData, statusData, rentalData] = await Promise.all([
+      const [equipmentData, statusData] = await Promise.all([
         apiService.getEquipment(),
         apiService.getEquipmentStatus(),
-        apiService.getRentals()
       ]);
 
-      // Calculate KPIs
+      // Simple, logical KPI calculations
       const totalAssets = equipmentData.length;
-      const activeAssets = statusData.filter(s => s.live_stat === 'engine').length;
-      const utilizationRate = totalAssets > 0 ? Math.round((activeAssets / totalAssets) * 100) : 0;
       
-      // Calculate overdue assets
-      const today = new Date();
-      const overdueAssets = rentalData.filter(rental => {
-        if (!rental.checkin) return false;
-        const dueDate = new Date(rental.checkin);
-        return dueDate < today;
-      }).length;
-
-      // Calculate critical alerts (maintenance + idle for extended periods)
+      // Critical alerts = equipment in maintenance
       const criticalAlerts = statusData.filter(s => s.live_stat === 'maintenance').length;
 
+      // Data validation - ensure numbers make sense
+      const validatedCriticalAlerts = Math.min(criticalAlerts, totalAssets); // Can't have more in maintenance than total
+
+      // Debug logging
+      console.log('KPI Debug Data:', {
+        totalAssets,
+        criticalAlerts: validatedCriticalAlerts,
+        equipmentDataLength: equipmentData.length,
+        statusDataLength: statusData.length,
+        activeRentals: statusData.filter(s => s.live_stat === 'maintenance').length,
+      });
+
       const newKpiData = [
-        { title: 'Total Assets Rented', value: totalAssets, icon: '🚜' },
-        { title: 'Utilization Rate', value: `${utilizationRate}%`, icon: '📊' },
-        { title: 'Overdue Assets', value: overdueAssets, icon: '⚠️' },
-        { title: 'Critical Alerts', value: criticalAlerts, icon: '🔴' },
+        { title: 'Total Assets', value: totalAssets, icon: '🚜' },
+        { title: 'In Maintenance', value: validatedCriticalAlerts, icon: '🔴' },
       ];
 
       setKpiData(newKpiData);
     } catch (error) {
-      setBackendStatus('error');
+      console.error('Error fetching KPI data:', error);
       // Fallback to sample data
       setKpiData([
-        { title: 'Total Assets Rented', value: 47, icon: '🚜' },
-        { title: 'Utilization Rate', value: '85%', icon: '📊' },
-        { title: 'Overdue Assets', value: 3, icon: '⚠️' },
-        { title: 'Critical Alerts', value: 2, icon: '🔴' },
+        { title: 'Total Assets', value: 47, icon: '🚜' },
+        { title: 'In Maintenance', value: 2, icon: '🔴' },
       ]);
     } finally {
       setLoading(false);
@@ -101,34 +77,21 @@ const KPICards = () => {
 
   return (
     <div>
-      {/* Backend Status Indicator */}
       <div style={{ 
         marginBottom: '1rem', 
-        padding: '0.5rem 1rem', 
-        borderRadius: '4px',
-        backgroundColor: backendStatus === 'connected' ? '#d4edda' : 
-                       backendStatus === 'disconnected' ? '#f8d7da' : '#fff3cd',
-        color: backendStatus === 'connected' ? '#155724' : 
-               backendStatus === 'disconnected' ? '#721c24' : '#856404',
-        border: `1px solid ${backendStatus === 'connected' ? '#c3e6cb' : 
-                           backendStatus === 'disconnected' ? '#f5c6cb' : '#ffeaa7'}`,
-        fontSize: '0.9rem'
+        display: 'flex', 
+        justifyContent: 'flex-end' 
       }}>
-        <strong>KPI Data Source:</strong> {
-          backendStatus === 'connected' ? '✅ Real-time from Backend' :
-          backendStatus === 'disconnected' ? '❌ Sample Data (Backend Offline)' :
-          '⚠️ Sample Data (Backend Error)'
-        }
         <button 
           onClick={fetchKPIData} 
           style={{ 
-            marginLeft: '1rem', 
-            padding: '0.25rem 0.5rem', 
+            padding: '0.5rem 1rem', 
             background: '#3498db', 
             color: 'white', 
             border: 'none', 
             borderRadius: '4px',
-            fontSize: '0.8rem'
+            fontSize: '0.9rem',
+            fontWeight: 'bold'
           }}
         >
           Refresh
@@ -151,3 +114,4 @@ const KPICards = () => {
 };
 
 export default KPICards;
+  

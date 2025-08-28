@@ -1,63 +1,341 @@
 .asset-library-container {
-  background: #181818;
   padding: 2rem;
-  border-radius: 16px;
-  box-shadow: 0 4px 24px rgba(0,0,0,0.12);
-  margin: 2rem auto;
-  max-width: 1100px;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
 .asset-library-title {
-  color: #ffcd11;
+  color: #2c3e50;
+  margin-bottom: 2rem;
   font-size: 2rem;
-  font-weight: 700;
-  margin-bottom: 1.5rem;
-  letter-spacing: 1px;
+  font-weight: bold;
+}
+
+.asset-library-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.back-button {
+  padding: 0.5rem 1rem;
+  background: #95a5a6;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 0.9rem;
+}
+
+.back-button:hover {
+  background: #7f8c8d;
 }
 
 .asset-library-loading,
 .asset-library-error {
-  color: #ffcd11;
+  text-align: center;
+  padding: 2rem;
   font-size: 1.1rem;
-  margin: 1rem 0;
+  color: #666;
 }
 
-.asset-library-table {
+.asset-library-error {
+  color: #e74c3c;
+  background: #fdf2f2;
+  border: 1px solid #fecaca;
+  border-radius: 4px;
+  padding: 1rem;
+}
+
+/* Button Styles */
+.refresh-btn {
+  padding: 0.75rem 1.5rem;
+  background: linear-gradient(135deg, #2c3e50 0%, #34495e 100%);
+  color: #ffcd11;
+  border: 2px solid #ffcd11;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-size: 1rem;
+  box-shadow: 0 4px 15px rgba(44, 62, 80, 0.3);
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+.refresh-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(44, 62, 80, 0.5);
+  background: linear-gradient(135deg, #34495e 0%, #2c3e50 100%);
+  border-color: #ffcd11;
+}
+
+.pagination-btn {
+  padding: 0.75rem 1.5rem;
+  font-weight: 600;
+  font-size: 1rem;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.prev-btn {
+  background: linear-gradient(135deg, #95a5a6 0%, #7f8c8d 100%);
+  color: white;
+}
+
+.prev-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(149, 165, 166, 0.4);
+  background: linear-gradient(135deg, #7f8c8d 0%, #95a5a6 100%);
+}
+
+.next-btn {
+  background: linear-gradient(135deg, #ffcd11 0%, #f39c12 100%);
+  color: #2c3e50;
+}
+
+.next-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(255, 205, 17, 0.4);
+  background: linear-gradient(135deg, #f39c12 0%, #ffcd11 100%);
+}
+
+/* Equipment Types Grid */
+.equipment-types-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 1.5rem;
+  margin-top: 2rem;
+}
+
+.equipment-type-card {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 1.5rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.equipment-type-card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+  border-color: #3498db;
+}
+
+.equipment-type-title {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.3rem;
+  font-weight: bold;
+}
+
+.equipment-count {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #3498db;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+.equipment-status-breakdown {
+  margin-bottom: 1rem;
+}
+
+.status-item {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 0.9rem;
+  color: #666;
+}
+
+.status-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+}
+
+.status-dot.status-active {
+  background: #2ecc71;
+}
+
+.status-dot.status-idle {
+  background: #f39c12;
+}
+
+.status-dot.status-error {
+  background: #e74c3c;
+}
+
+.equipment-rental-status {
+  text-align: center;
+  padding-top: 1rem;
+  border-top: 1px solid #e1e8ed;
+}
+
+.rental-count {
+  background: #ecf0f1;
+  color: #2c3e50;
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+/* Equipment Summary */
+.equipment-summary {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.summary-card {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 6px;
+  padding: 1rem;
+  text-align: center;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.summary-card h3 {
+  margin: 0 0 0.5rem 0;
+  font-size: 0.9rem;
+  color: #666;
+  font-weight: 500;
+}
+
+.summary-number {
+  font-size: 1.8rem;
+  font-weight: bold;
+  color: #2c3e50;
+}
+
+.summary-number.status-active {
+  color: #2ecc71;
+}
+
+.summary-number.status-idle {
+  color: #f39c12;
+}
+
+.summary-number.status-error {
+  color: #e74c3c;
+}
+
+/* Equipment Details */
+.equipment-details {
+  background: white;
+  border: 1px solid #e1e8ed;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.equipment-details h3 {
+  color: #2c3e50;
+  margin-bottom: 1rem;
+  font-size: 1.2rem;
+  font-weight: bold;
+}
+
+.equipment-table {
   width: 100%;
   border-collapse: collapse;
-  background: #222;
-  color: #fff;
-  border-radius: 8px;
-  overflow: hidden;
-  box-shadow: 0 2px 8px rgba(0,0,0,0.10);
+  margin-top: 1rem;
 }
 
-.asset-library-table th,
-.asset-library-table td {
-  padding: 0.9rem 1.2rem;
+.equipment-table th,
+.equipment-table td {
+  padding: 0.75rem;
   text-align: left;
+  border-bottom: 1px solid #e1e8ed;
 }
 
-.asset-library-table th {
-  background: #ffcd11;
-  color: #222;
-  font-weight: 700;
-  font-size: 1rem;
+.equipment-table th {
+  background: #f8f9fa;
+  font-weight: 600;
+  color: #2c3e50;
 }
 
-.asset-library-table tr {
-  transition: background 0.2s;
+/* Make status column wider */
+.equipment-table th:nth-child(3),
+.equipment-table td:nth-child(3) {
+  min-width: 140px;
+  width: 140px;
 }
 
-.asset-library-table tr:hover {
-  background: #ffe066;
-  color: #222;
+.equipment-table tbody tr:hover {
+  background: #f8f9fa;
 }
 
-.asset-library-table td {
-  border-bottom: 1px solid #333;
+.status-indicator {
+  display: inline-block;
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  margin-right: 0.5rem;
+  vertical-align: middle;
 }
 
-.asset-library-table tr:last-child td {
-  border-bottom: none;
+.status-indicator.status-active {
+  background: #2ecc71;
+}
+
+.status-indicator.status-idle {
+  background: #f39c12;
+}
+
+.status-indicator.status-error {
+  background: #e74c3c;
+}
+
+.rental-status {
+  padding: 0.3rem 0.8rem;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 500;
+}
+
+.rental-status.rented {
+  background: #e8f5e8;
+  color: #27ae60;
+}
+
+.rental-status.available {
+  background: #fff3cd;
+  color: #856404;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .asset-library-container {
+    padding: 1rem;
+  }
+  
+  .equipment-types-grid {
+    grid-template-columns: 1fr;
+  }
+  
+  .equipment-summary {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  
+  .equipment-table {
+    font-size: 0.9rem;
+  }
+  
+  .equipment-table th,
+  .equipment-table td {
+    padding: 0.5rem;
+  }
 }

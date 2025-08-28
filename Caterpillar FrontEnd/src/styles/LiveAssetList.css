@@ -44,6 +44,13 @@
 .asset-table tr:hover {
   background: #333;
 }
+.status-wrapper {
+  display: flex;
+  align-items: center;
+  gap: 0.4rem; /* consistent spacing between dot and text */
+  white-space: nowrap; /* prevents breaking into a new line */
+}
+
 .status-indicator {
   display: inline-block;
   width: 12px;
@@ -91,12 +98,35 @@
   margin-right: 10px;
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.butterfly-loader {
+  display: inline-block;
+  animation: fly 3s ease-in-out infinite;
 }
 
-.kpi-card.loading .kpi-value {
-  color: #ccc;
-  font-style: italic;
+.wing {
+  transform-origin: center center;
 }
+
+.left-wing {
+  animation: flap-left 1s ease-in-out infinite;
+}
+
+.right-wing {
+  animation: flap-right 1s ease-in-out infinite;
+}
+
+@keyframes flap-left {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(-20deg); }
+}
+
+@keyframes flap-right {
+  0%, 100% { transform: rotate(0deg); }
+  50% { transform: rotate(20deg); }
+}
+
+@keyframes fly {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
