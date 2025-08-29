@@ -3,6 +3,7 @@ import React, { useState, useEffect } from 'react';
 import { MapContainer, TileLayer, Marker, Popup, Polyline, Polygon } from 'react-leaflet';
 import L from 'leaflet';
 import 'leaflet/dist/leaflet.css';
+import ButterflyLoader from '../shared/ButterflyLoader';
 import '../../styles/ConstructionMap.css';
 
 // Fix for default markers in react-leaflet
@@ -102,7 +103,7 @@ const ConstructionMap = ({ onAssetSelect }) => {
           <div className="modal-content" onClick={e => e.stopPropagation()}>
             <button className="close-btn" onClick={handleClose}>Close</button>
             <div className="full-map">
-              {loading && <div style={{ color: '#ffcd11', fontWeight: 600, padding: '1rem' }}>Loading map data...</div>}
+              {loading && <ButterflyLoader text="Loading map data..." size={80} />}
               {error && <div style={{ color: '#ef4444', fontWeight: 600, padding: '1rem' }}>{error}</div>}
               {!loading && !error && (
                 <MapContainer

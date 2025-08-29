@@ -1,0 +1,14 @@
+# Neon Database Connection Configuration
+# Create a .env file in the same directory with the following content:
+
+DATABASE_URL=postgresql://username:password@hostname:port/database_name
+
+# Example format:
+# DATABASE_URL=postgresql://john_doe:mypassword@ep-cool-forest-123456.us-east-2.aws.neon.tech/neondb?sslmode=require
+
+# To get your Neon connection string:
+# 1. Go to https://console.neon.tech/
+# 2. Create a new project or select existing one
+# 3. Go to Connection Details
+# 4. Copy the connection string
+# 5. Replace username, password, and database name with your actual values

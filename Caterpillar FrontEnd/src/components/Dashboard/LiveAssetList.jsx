@@ -2,6 +2,7 @@
 import React, { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 import apiService from '../../services/api';
+import ButterflyLoader from '../shared/ButterflyLoader';
 import '../../styles/LiveAssetList.css';
 
 const ITEMS_PER_PAGE = 20;
@@ -10,6 +11,7 @@ const LiveAssetList = ({ onAssetSelect }) => {
   const navigate = useNavigate();
   const [assets, setAssets] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
   const [error, setError] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
 
@@ -19,7 +21,11 @@ const LiveAssetList = ({ onAssetSelect }) => {
 
   const fetchAssets = async () => {
     try {
-      setLoading(true);
+      if (!loading) {
+        setRefreshing(true);
+      } else {
+        setLoading(true);
+      }
       setError(null);
 
       const [equipmentData, statusData, rentalData, sitesData] = await Promise.all([
@@ -55,6 +61,7 @@ const LiveAssetList = ({ onAssetSelect }) => {
       setAssets(getSampleData());
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
@@ -162,49 +169,14 @@ const LiveAssetList = ({ onAssetSelect }) => {
     }
   };
 
-if (loading) {
-  return (
-    <div className="asset-list">
-      <h2>Live Asset List</h2>
-      <div style={{ textAlign: "center", padding: "2rem" }}>
-        <div className="butterfly-loader">
-          <svg
-            width="120"
-            height="120"
-            viewBox="0 0 200 200"
-            xmlns="http://www.w3.org/2000/svg"
-          >
-            {/* Left Wing */}
-            <path
-              d="M100,100 C40,20 10,90 60,120 C20,160 60,180 90,140 Z"
-              fill="yellow"
-              stroke="black"
-              strokeWidth="3"
-              className="wing left-wing"
-            />
-            {/* Right Wing */}
-            <path
-              d="M100,100 C160,20 190,90 140,120 C180,160 140,180 110,140 Z"
-              fill="yellow"
-              stroke="black"
-              strokeWidth="3"
-              className="wing right-wing"
-            />
-            {/* Butterfly body */}
-            <rect x="95" y="90" width="10" height="40" rx="5" fill="black" />
-            <circle cx="100" cy="80" r="8" fill="black" />
-            {/* Antennae */}
-            <path d="M100 80 C90 60, 70 50, 60 40" stroke="black" strokeWidth="2" fill="none"/>
-            <path d="M100 80 C110 60, 130 50, 140 40" stroke="black" strokeWidth="2" fill="none"/>
-          </svg>
-        </div>
-        <p style={{ marginTop: "1rem", fontWeight: "bold", color: "#444" }}>
-          Loading assets...
-        </p>
+  if (loading) {
+    return (
+      <div className="asset-list">
+        <h2>Live Asset List</h2>
+        <ButterflyLoader text="Loading assets..." />
       </div>
-    </div>
-  );
-}
+    );
+  }
 
   return (
     <div className="asset-list">
@@ -235,8 +207,16 @@ if (loading) {
           <button 
             onClick={fetchAssets} 
             className="refresh-btn"
+            disabled={refreshing}
           >
-            🔄 Refresh
+            {refreshing ? (
+              <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+                <ButterflyLoader size={20} showText={false} />
+                Refreshing...
+              </div>
+            ) : (
+              '🔄 Refresh'
+            )}
           </button>
 
           {currentPage > 1 && (

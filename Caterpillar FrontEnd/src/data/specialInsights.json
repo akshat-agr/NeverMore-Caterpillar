@@ -1,0 +1,74 @@
+{
+
+
+    
+
+  "specialInsights": [
+    {
+      "id": 1,
+      "device": "Excavators",
+      "location": "Madhya Pradesh , Arunachal Pradesh",
+      "urgency": "High",
+      "timeline": "Next 2 weeks",
+      "description": "MCL Plots Rs 400 Billion Thermal Plant, Green Projects",
+      "source": "https://www.constructionworld.in/energy-infrastructure/coal-and-mining/mcl-plots-rs--400--billion-thermal-plant--green-projects/75707",
+      "newsDate": "2024-12-15",
+      "estimatedDemand": 8
+    },
+    {
+      "id": 2,
+      "device": "Cranes",
+      "location": "Miami, Florida",
+      "urgency": "Medium",
+      "timeline": "Next month",
+      "description": "New commercial development project in downtown Miami requiring heavy lifting equipment for high-rise construction.",
+      "source": "https://www.miamibusiness.com/downtown-development-2024",
+      "newsDate": "2024-12-14",
+      "estimatedDemand": 4
+    },
+    {
+      "id": 3,
+      "device": "Bulldozers",
+      "location": "Phoenix, Arizona",
+      "urgency": "High",
+      "timeline": "Immediate",
+      "description": "Emergency road clearing needed after recent storms in Phoenix metropolitan area.",
+      "source": "https://www.phoenixnews.com/storm-cleanup-2024",
+      "newsDate": "2024-12-13",
+      "estimatedDemand": 6
+    },
+    {
+      "id": 4,
+      "device": "Wheel Loaders",
+      "location": "Denver, Colorado",
+      "urgency": "Medium",
+      "timeline": "Next 3 weeks",
+      "description": "Mining operation expansion in Colorado requiring additional material handling equipment.",
+      "source": "https://www.denvermining.com/expansion-2024",
+      "newsDate": "2024-12-12",
+      "estimatedDemand": 5
+    },
+    {
+      "id": 5,
+      "device": "Dump Trucks",
+      "location": "Seattle, Washington",
+      "urgency": "High",
+      "timeline": "Next week",
+      "description": "Large-scale residential development project in Seattle suburbs requiring extensive earth moving.",
+      "source": "https://www.seattleconstruction.com/suburban-development-2024",
+      "newsDate": "2024-12-11",
+      "estimatedDemand": 12
+    },
+    {
+      "id": 6,
+      "device": "Compactors",
+      "location": "Atlanta, Georgia",
+      "urgency": "Medium",
+      "timeline": "Next month",
+      "description": "Highway resurfacing project on I-75 requiring road compaction equipment.",
+      "source": "https://www.atlantatransport.com/i75-resurfacing-2024",
+      "newsDate": "2024-12-10",
+      "estimatedDemand": 3
+    }
+  ]
+}

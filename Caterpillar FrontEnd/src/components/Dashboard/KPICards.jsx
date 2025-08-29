@@ -1,6 +1,7 @@
 // src/components/Dashboard/KPICards.jsx
 import React, { useState, useEffect } from 'react';
 import apiService from '../../services/api';
+import ButterflyLoader from '../shared/ButterflyLoader';
 import '../../styles/KPICards.css';
 
 const KPICards = () => {
@@ -9,6 +10,7 @@ const KPICards = () => {
     { title: 'In Maintenance', value: 0, icon: '🔴' },
   ]);
   const [loading, setLoading] = useState(true);
+  const [refreshing, setRefreshing] = useState(false);
 
   useEffect(() => {
     fetchKPIData();
@@ -16,7 +18,11 @@ const KPICards = () => {
 
   const fetchKPIData = async () => {
     try {
-      setLoading(true);
+      if (!loading) {
+        setRefreshing(true);
+      } else {
+        setLoading(true);
+      }
 
       const [equipmentData, statusData] = await Promise.all([
         apiService.getEquipment(),
@@ -56,21 +62,14 @@ const KPICards = () => {
       ]);
     } finally {
       setLoading(false);
+      setRefreshing(false);
     }
   };
 
   if (loading) {
     return (
-      <div className="kpi-grid">
-        {kpiData.map((kpi, index) => (
-          <div key={index} className="kpi-card loading">
-            <div className="kpi-header">
-              <div className="kpi-title">{kpi.title}</div>
-              <div className="kpi-icon">{kpi.icon}</div>
-            </div>
-            <div className="kpi-value">...</div>
-          </div>
-        ))}
+      <div className="kpi-container">
+        <ButterflyLoader text="Loading KPI data..." />
       </div>
     );
   }
@@ -84,17 +83,26 @@ const KPICards = () => {
       }}>
         <button 
           onClick={fetchKPIData} 
+          disabled={refreshing}
           style={{ 
             padding: '0.5rem 1rem', 
-            background: '#3498db', 
+            background: refreshing ? '#95a5a6' : '#3498db', 
             color: 'white', 
             border: 'none', 
             borderRadius: '4px',
             fontSize: '0.9rem',
-            fontWeight: 'bold'
+            fontWeight: 'bold',
+            cursor: refreshing ? 'not-allowed' : 'pointer'
           }}
         >
-          Refresh
+          {refreshing ? (
+            <div style={{ display: 'flex', alignItems: 'center', gap: '0.5rem' }}>
+              <ButterflyLoader size={16} showText={false} />
+              Refreshing...
+            </div>
+          ) : (
+            'Refresh'
+          )}
         </button>
       </div>
 

@@ -9,7 +9,8 @@ const Navigation = () => {
   const menuItems = [
     { id: 'dashboard', label: 'Live Assets' },
     { id: 'assets', label: 'Overview' },
-    { id: 'rentals', label: 'Rental Management' },
+    { id: 'demand', label: 'Demand Forecasting' },
+    { id: 'insights', label: 'Special Insight' },
     { id: 'settings', label: 'Settings' },
   ];
 

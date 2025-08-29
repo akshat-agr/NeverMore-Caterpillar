@@ -1,0 +1,52 @@
+{
+  "demandForecasts": [
+    {
+      "deviceType": "Excavators",
+      "forecastedDemand": 45,
+      "currentInventory": 32,
+      "shortage": 13,
+      "trend": "increasing",
+      "month": "December 2024"
+    },
+    {
+      "deviceType": "Bulldozers",
+      "forecastedDemand": 28,
+      "currentInventory": 25,
+      "shortage": 3,
+      "trend": "stable",
+      "month": "December 2024"
+    },
+    {
+      "deviceType": "Wheel Loaders",
+      "forecastedDemand": 38,
+      "currentInventory": 30,
+      "shortage": 8,
+      "trend": "increasing",
+      "month": "December 2024"
+    },
+    {
+      "deviceType": "Cranes",
+      "forecastedDemand": 22,
+      "currentInventory": 18,
+      "shortage": 4,
+      "trend": "increasing",
+      "month": "December 2024"
+    },
+    {
+      "deviceType": "Dump Trucks",
+      "forecastedDemand": 52,
+      "currentInventory": 40,
+      "shortage": 12,
+      "trend": "high",
+      "month": "December 2024"
+    },
+    {
+      "deviceType": "Compactors",
+      "forecastedDemand": 15,
+      "currentInventory": 12,
+      "shortage": 3,
+      "trend": "stable",
+      "month": "December 2024"
+    }
+  ]
+}

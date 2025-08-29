@@ -60,6 +60,11 @@
   margin: 0 auto;
   width: 100%;
 }
+.qr-scanner-container {
+  margin: 20px auto;
+  max-width: 500px;
+  text-align: center;
+}
 
 .overview-container {
   display: flex;

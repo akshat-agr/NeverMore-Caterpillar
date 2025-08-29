@@ -8,7 +8,8 @@ import FleetCommandCenter from './components/Dashboard/FleetCommandCenter';
 import DigitalTwinView from './components/AssetDetail/DigitalTwinView';
 import QRModal from './components/CheckInOut/QRModal';
 import AssetLibrary from './pages/AssetLibrary';
-import RentalManagement from './pages/RentalManagement';
+import DemandForecasting from './pages/DemandForecasting';
+import SpecialInsight from './pages/SpecialInsight';
 import Settings from './pages/Settings';
 import LandingPage from './pages/LandingPage';
 import { ClerkProvider, SignedIn, SignedOut, UserButton } from '@clerk/clerk-react';
@@ -89,7 +90,7 @@ function App() {
             </SignedIn>
           } />
           
-          <Route path="/rentals" element={
+          <Route path="/demand" element={
             <SignedIn>
               <div className="app">
                 <Navigation />
@@ -98,7 +99,22 @@ function App() {
                   <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem 2rem' }}>
                     <UserButton afterSignOutUrl="/" />
                   </div>
-                  <RentalManagement />
+                  <DemandForecasting />
+                </div>
+              </div>
+            </SignedIn>
+          } />
+          
+          <Route path="/insights" element={
+            <SignedIn>
+              <div className="app">
+                <Navigation />
+                <div className="main-content">
+                  <Header />
+                  <div style={{ display: 'flex', justifyContent: 'flex-end', padding: '1rem 2rem' }}>
+                    <UserButton afterSignOutUrl="/" />
+                  </div>
+                  <SpecialInsight />
                 </div>
               </div>
             </SignedIn>

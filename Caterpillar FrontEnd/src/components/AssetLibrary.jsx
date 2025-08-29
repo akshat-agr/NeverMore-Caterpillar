@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import apiService from '../services/api';
+import ButterflyLoader from './shared/ButterflyLoader';
 import './AssetLibrary.css';
 
 const AssetLibrary = () => {
@@ -103,7 +104,7 @@ const AssetLibrary = () => {
     return (
       <div className="asset-library-container">
         <h2 className="asset-library-title">Asset Library</h2>
-        <div className="asset-library-loading">Loading equipment data...</div>
+        <ButterflyLoader text="Loading equipment data..." />
       </div>
     );
   }
